@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-5">
+
+    <div class="card border-warning" style='width: 28rem'>
+        <div class="card-header text-center bg-secondary text-warning">
+            <h4>Login</h4>
+        </div>
+        <div class="card-body">
+            <form action = '' method="POST" novalidate>
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.username.label }} <br>
+                    {{ form.username(size=32) }}
+                    {% for error in form.username.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }} <br>
+                    {{ form.password(size=32) }}
+                    {% for error in form.password.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <br>
+                    {{ form.submit() }}
+                <br>
+            </form>
+        </div>
+        <div class="card-footer text-center text-danger">
+            <em>If you do not have an account, please Signup first</em>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

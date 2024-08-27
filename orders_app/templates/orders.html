@@ -1,0 +1,83 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class='flex'>
+        <h3>Current Date : {{ currdate }}</h3>
+
+        <h4>View the grocery orders within a selected date range :</h4>
+    </div>
+
+    <form action="{{url_for('orders', page='f')}}" method='POST' novalidate class='col-md-8'>
+        {{ form.hidden_tag() }}
+        <div class='row mt-3 mb-3'>
+
+               <div class="col form-group">
+                    {{ form.startDate.label }}
+                    {{ form.startDate() }}
+                    {% for error in form.startDate.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+              <div class="col form-group">
+                    {{ form.endDate.label }}
+                    {{ form.endDate() }}
+                    {% for error in form.endDate.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+              </div>
+
+              <div class='col'>
+                <button class="btn btn-secondary btn-warning btn-sm">
+                    <b>Get Order Details</b>
+                </button>
+              </div>
+        </div>
+    </form>
+
+    {% if orders %}
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-sm">
+        <li class="page-item"><a class="page-link" href={{url_for('orders', page='f')}}>First</a></li>
+        <li class="page-item"><a class="page-link" href={{url_for('orders', page='p')}}>Previous</a></li>
+        <li class="page-item"><a class="page-link" href={{url_for('orders', page='n')}}>Next</a></li>
+        <li class="page-item"><a class="page-link" href={{url_for('orders', page='l')}}>Last</a></li>
+      </ul>
+    </nav>
+
+    <h5>
+    <!--<div style='width: 42rem'>-->
+        <div class='col-xl-8 col-sm-12'>
+        <table class="table table-striped table-sm">
+            <thead class='thead-dark'>
+                <tr class='h6'>
+                    <th scope="col" class='text-warning bg-secondary'>Order Date</th>
+                    <th scope="col" class='text-warning bg-secondary'>Order Description</th>
+                    <th scope="col" class='text-warning bg-secondary text-center'>Order Lines</th>
+                    <th scope="col" class='text-warning bg-secondary text-center'>Number of Items</th>
+                    <th scope="col" class='text-warning bg-secondary text-center'>Total Cost</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr class='h6'>
+                        <td class='text-primary'><b>{{ order[0] }}</b></td>
+                        <td class='text-primary'>{{ order[1] }}</td>
+                        <td class='text-primary text-center'>{{ order[2] }}</td>
+                        <td class='text-primary text-center'>{{ order[3] }}</td>
+                        <td class='text-primary text-center'>{{ order[4] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </h5>
+    <br>
+
+    {% endif %}
+{% endblock content %}
+

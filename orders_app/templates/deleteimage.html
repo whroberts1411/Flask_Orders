@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div >
+    <h3>Delete Image :</h3>
+    <h5 class='mt-3'>{{ image }}</h5>
+</div>
+
+<div class='row mt-5 align-items-center'>
+
+<div class='col'>
+
+<img src='\{{thumb}}' alt='Where is it??' class='img-fluid'/>
+
+</div>
+
+<div class='col'>
+
+<h5 class=' text-center mt-5'><b>Are you sure you want to DELETE this image?</b></h5>
+
+<form action='',  method='POST' class='justify-content-center'>
+
+<div class='form-group text-center mt-5' >
+    <button type="submit" class="btn btn-warning  btn-lg "
+       name='action' value='yes'>
+       <b>Yes</b> </button>
+
+    <button type="submit" class="btn btn-warning btn-lg ms-5"
+       name='action' value='no'>
+       <b>No</b> </button>
+</div>
+
+</form>
+</div>
+</div>
+
+{% endblock content %}

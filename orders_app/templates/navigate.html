@@ -1,0 +1,80 @@
+
+  <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+
+    <!-- Branding for the navbar - icon and company/website name, for example -->
+    <a class="navbar-brand px-4" href={{url_for('index')}}>
+    <img class="mylogo" src="/static/logo.png" alt="logo" /></a>
+    <b><span class="px-2 text-warning">My Example Flask Website</span></b>
+
+     <!-- This is the button that's displayed for a narrow screen e.g. a smartphone. -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- This defines the navigation elements, as an unordered list. -->
+    <div class="collapse navbar-collapse" id='navbarMenu'>
+        <!-- ml-auto shifts the menu items to the right of the bar (ml = margin-left) -->
+        <ul class="navbar-nav ms-auto" >
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('index')}}>Home</a>
+            </li>
+
+             <li class="nav-item">
+                <a class="nav-link" href={{url_for('orders', page='f')}} >Orders</a>
+            </li>
+
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('weather')}} >Weather</a>
+            </li>
+
+            {#
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('browsedb',name='none',option='none')}} >Database</a>
+            </li>
+            #}
+
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('browseimages')}} >Images</a>
+            </li>
+
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('music', track='none', delete='no', page='f')}} >Music</a>
+            </li>
+
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('video', vid_url='none', delete='no')}} >Video</a>
+            </li>
+
+            {#
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('email')}} >Email</a>
+            </li>
+            #}
+
+            {% if session['admin'] == 'y' %}
+            <li class="nav-item" >
+                <a class="nav-link" href={{url_for('admin', delete='no', user='none')}} >Admin</a>
+            </li>
+            {% endif %}
+
+            {% if not session['username'] %}
+                 <li class="nav-item">
+                    <a class="nav-link" href={{url_for('login')}} >Sign In</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href={{url_for('register')}} >Sign Up</a>
+                </li>
+            {% else %}
+                 <li class="nav-item">
+                    <a class="nav-link" href={{url_for('logout')}} >Sign Out</a>
+                </li>
+            {% endif %}
+
+         </ul>
+     </div>
+
+  </nav>
+
+  <br><br><br>

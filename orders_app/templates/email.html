@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-8 offset-md-2 mt-4">
+
+    <div class="card border-warning">
+        <div class="card-header text-center bg-secondary text-warning">
+            <h4>Send Email</h4>
+        </div>
+        <div class="card-body">
+            <form action = '' method="POST"  enctype=multipart/form-data novalidate>
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.sender.label }} <br>
+                    {{ form.sender(size=45) }}
+
+                    {% for error in form.sender.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.recipient.label }} <br>
+                    {{ form.recipient(size=45) }}
+                    {% for error in form.recipient.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.subject.label }} <br>
+                    {{ form.subject(size=45) }}
+                    {% for error in form.subject.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group" >
+                    {{ form.body.label }} <br>
+                    {{ form.body(style='height: 100px;width: 380px') }}
+                    {% for error in form.body.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group" >
+                    {{ form.attachment.label }} <br>
+                    {{ form.attachment() }}
+                    {% for error in form.attachment.errors %}<br>
+                        <span class='text-danger'>[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-warning mt-3 mb-2">
+                        Send Email
+                </button>
+
+            </form>
+        </div>
+        <div class="card-footer text-center text-danger">
+            <em>Multiple recipients should be comma-separated</em>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
+

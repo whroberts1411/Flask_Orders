@@ -1,0 +1,57 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Maintain Uploaded Images ({{ total }} found)</h2>
+
+<div class="mt-2">
+    <h4 class='mb-4'>Upload, browse, annotate and delete saved image files</h4>
+    <form action="" method='POST' enctype="multipart/form-data" novalidate>
+        {{ form.hidden_tag() }}
+        <div class='mb-3'>
+
+           <b> {{ form.newImages.label(class='me-2')}} </b><br>
+            {{ form.newImages(class='btn btn-warning') }}
+            {% for error in form.newImages.errors %}<br>
+                <span class='text-danger'><b>{{ error }}</b></span>
+            {% endfor %}
+            <br>
+            <button  class="btn btn-warning btn-sm mt-3">
+                <b>Get Selected Images</b>
+            </button>
+
+        </div>
+    </form>
+</div>
+
+<div class='mt-2 mb-3' style="border-bottom: 6px solid #B50505;"></div>
+
+<!----------------------------------------------------------------------------->
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-4 g-2" >
+    {% for thumb in thumbs %}
+    <div class="col">
+        <div class='card h-100 border-black' >
+
+            <img src='\{{thumb[0]}}' class='card-img-top' alt='{{thumb[1]}} --missing'>
+            <div class='card-body'>
+                <b class='card-title'>{{thumb[1]}}</b>
+                <p class='card-text'>{{thumb[2]}} </p>
+                    <small>Date Modified : {{thumb[3]}}</small>
+           </div>
+
+            <div class='card-footer'>
+                <a href={{url_for('editimage', image=thumb[0])}} class='btn btn-warning btn-sm'>Edit</a>
+                <a href={{url_for('setbackground', image=thumb[0])}} class='btn btn-warning btn-sm'>Background</a>
+                <a href={{url_for('deleteimage', image=thumb[0])}} class='btn btn-danger btn-sm'>Delete</a>
+            </div>
+
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+<br>
+
+{% endblock content %}

@@ -1,0 +1,86 @@
+body {
+    background-color: ghostwhite;
+}
+hr {
+    border-top: 2px solid #f0ad4e;
+}
+
+/* remove the underline from href links */
+a {
+    text-decoration: none;
+}
+
+/* Limit the width of text in a table cell */
+td {
+  max-width:300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+/* Constrain the maximum size of the product images */
+.mylogo {
+    max-height: 30px;
+    max-width: 30px
+}
+/* Set menu link items to text.info colour */
+nav .navbar-nav li a{
+    color: #5bc0de !important;
+    }
+/* Set menu link item hover to text.warning colour */
+nav .navbar-nav li a:hover{
+    color:#f0ad4e  !important;
+    }
+
+/* Set background image for all pages in the site */
+#mainBlock {
+    background: url(/static/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    overflow-x: scroll;
+    min-height: 920px;
+}
+
+#mainBlock .dark-overlay {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    overflow-x: scroll;
+    min-height: 920px;
+    background: rgba(255,255,255,0.50);
+    background-attachment: fixed;
+}
+
+thead {
+    color:#f7bf08  !important;
+    background-color: rgb(177, 174, 174) !important;
+    font-size: 12px;
+}
+
+tbody {
+    font-size: 12px;
+}
+
+@media print{
+    thead {
+        background-color: rgb(177, 174, 174) !important;
+        color:#f7bf08  !important;
+        font-size: 12px;
+        -webkit-print-color-adjust: exact !important;
+    }
+  }
+
+@page {
+    size: A4;
+    margin: 1.0cm;
+    @bottom-left {
+        font-size: 10px;
+        content: "Pandas Command Reference";
+    }
+    @bottom-right {
+        font-size: 10px;
+        content: "Page " counter(page) " of " counter(pages);
+    }
+}
