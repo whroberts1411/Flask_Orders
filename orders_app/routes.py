@@ -391,7 +391,11 @@ def editimage(image):
     if form.validate_on_submit():
         newName = form.name.data
         newDesc = form.desc.data
-        newName = dirName + newName + rootExt
+        newName = dirName.replace('\\','/') + newName + rootExt
+
+        print(f'image : {image}')
+        print(f'newName : {newName}')
+        print(f'imgName : {imgName}')
 
         if (newName == ds.store['ImageEdit'][0] and
                 newDesc == ds.store['ImageEdit'][1]) :
