@@ -539,10 +539,13 @@ def getImageByName(name):
 
 def updateImage(oldname, name, desc):
     """ Update the image details, matching on "oldname". """
-
+    #old = oldname.replace('\\', '/')
+    new = name.replace('\\', '/')
+    #print(f'old : {old}')
+    print(f'new : {new}')
     sql.query = 'Update Image Set ImageName = ?, Description = ? '
     sql.query += 'Where ImageName = ?; '
-    sql.values = [name, desc, oldname]
+    sql.values = [new, desc, oldname]
     ret = sql.UpdateSQLData()
     return ret
 

@@ -377,7 +377,6 @@ def browseimages():
 @login_required
 def editimage(image):
 
-    print(f'image : {image}')
     imgName = image.replace('_thumb','')    # original name (with 'thumb')
     fname = os.path.basename(imgName)       # original name, 'thumb' removed
     dirName = os.path.dirname(image) + '\\' # path, with trailing '\'
