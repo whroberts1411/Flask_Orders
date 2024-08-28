@@ -373,10 +373,11 @@ def browseimages():
 # Route for image edit.
 #-------------------------------------------------------------------------------
 
-@app.route('/editimage/<image>', methods=['GET', 'POST'])
+@app.route('/editimage/url=<path:image>', methods=['GET', 'POST'])
 @login_required
 def editimage(image):
 
+    print(f'image : {image}')
     imgName = image.replace('_thumb','')    # original name (with 'thumb')
     fname = os.path.basename(imgName)       # original name, 'thumb' removed
     dirName = os.path.dirname(image) + '\\' # path, with trailing '\'
@@ -419,7 +420,7 @@ def editimage(image):
 # Route for image delete.
 #-------------------------------------------------------------------------------
 
-@app.route('/deleteimage/<image>', methods=['GET', 'POST'])
+@app.route('/deleteimage/url=<path:image>', methods=['GET', 'POST'])
 @login_required
 def deleteimage(image):
 
@@ -452,7 +453,7 @@ def deleteimage(image):
 # Route for changing the background image.
 #-------------------------------------------------------------------------------
 
-@app.route('/setbackground/<image>', methods=['GET', 'POST'])
+@app.route('/setbackground/url=<path:image>', methods=['GET', 'POST'])
 @login_required
 def setbackground(image):
 

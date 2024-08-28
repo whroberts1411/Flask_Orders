@@ -440,7 +440,9 @@ def storeNewImages(images, pixels):
         f = Path(image)
         imgExt = str(Path(f).suffix)
         fname = Path(f).stem
-        fpath = str(Path(f).parent.absolute()) + '\\'
+        #fpath = str(Path(f).parent.absolute()) + '\\'
+        fpath = str(Path(f).parent.absolute()) + '/'
+        fpath = fpath.replace('\\', '/')
         thumb = fname + '_thumb' + imgExt
 
         im = Image.open(f)
@@ -457,7 +459,7 @@ def storeNewImages(images, pixels):
         if len(ret) < 2:
             sql.query = 'Insert Into Image (ImageName, Description, DateAdded) '
             sql.query += 'Values (?, ?, ?); '
-            sql.values = [str(f), msg, mod]
+            sql.values = [str(f).replace('\\','/'), msg, mod]
             ret = sql.UpdateSQLData()
 
 #-------------------------------------------------------------------------------
